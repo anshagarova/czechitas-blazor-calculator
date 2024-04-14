@@ -43,34 +43,59 @@
     private char? operation = null;
     private Calculator calculator = new Calculator();
 
-    private void AddInput(int number)
+    public Index()
     {
-        currentInput += number.ToString();
     }
 
+    private void AddInput(int number)
+    {
+        if (currentInput.Length < 100) {
+        currentInput += number.ToString();
+        }
+    }
+    
     private void AddDecimalPoint()
     {
         currentInput += ".";
         if (!currentInput.Contains(".")) {
-            currentInput += "."
+            currentInput += ".";
         }
     }
-
     private void SetOperation(char op)
     {
-        firstNumber = double.Parse(currentInput);
-        firstNumber = double.Parse(currentInput, CultureInfo.InvariantCulture);
-        currentInput = "0";
+        firstNumber = double.Parse(currentInput, System.Globalization.CultureInfo.InvariantCulture);
+        calculator.aktualniVysledek = firstNumber;
+        currentInput = "";
         operation = op;
     }
 
     private void CalculateResult()
     {
-        // TODO
+    double secondNumber = double.Parse(currentInput, System.Globalization.CultureInfo.InvariantCulture);
+        switch (operation)
+			{
+				case '+':
+					calculator.Pricti(secondNumber);
+					break;
+				case '-':
+					calculator.Odecti(secondNumber);
+					break;
+				case '*':
+					calculator.Vynasob(secondNumber);
+					break;
+				case '^':
+					calculator.Mocni(secondNumber);
+					break;
+				case '/':
+					calculator.Vydel(secondNumber);
+					break;
+			}
+            currentInput = calculator.VratAktualniVysledek().ToString(); 
     }
 
     private void Clear()
     {
-        // TODO
+       currentInput = "";
     }
+}
 }

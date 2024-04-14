@@ -1,8 +1,8 @@
 using System;
-public class Kalkulacka
+public class Calculator
 {
-	private double aktualniVysledek;
-	public Kalkulacka()
+	public double aktualniVysledek = 0;
+	public Calculator()
 	{
 		aktualniVysledek = 0;
 	}
